@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "628916149208",
+    "project_id": "projectauthenticationaaa",
+    "storage_bucket": "projectauthenticationaaa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628916149208:android:a273c5431458e6f06a70ad",
+        "android_client_info": {
+          "package_name": "com.tan.moblapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpjomb9Yywt2gRf2OvkRtObRCNyn_JqhY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

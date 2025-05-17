@@ -1,0 +1,76 @@
+# Node modules
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.* 
+
+# Metro
+.expo/
+.expo-shared/
+*.expo
+
+# React Native
+ios/Pods/
+ios/build/
+android/.gradle/
+android/app/build/
+android/.idea/
+android/local.properties
+
+# VSCode
+.vscode/
+.vscode/*
+
+# macOS
+*.swp
+*.swo
+
+# IDE
+.idea/
+*.iml
+
+# Babel cache
+babel.config.js
+
+# Bundle output
+*.bundle
+*.map
+*.hprof
+
+# Watchman
+.watchmanconfig
+
+# Expo web build
+web-build/
+
+# Jest
+coverage/
+jest-cache/
+jest-*
+
+# Build output
+build/
+dist/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Misc
+package-lock.json
+yarn.lock
+
+# Firebase Emulator data (nếu dùng)
+firebase-debug.log
+firestore.indexes.json
+firestore.rules
