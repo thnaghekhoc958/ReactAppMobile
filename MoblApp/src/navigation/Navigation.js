@@ -222,11 +222,7 @@ const AboutScreen = () => {
 
 // Root Navigator
 const Navigation = () => {
-  return (
-    <NavigationContainer independent={true}>
-      <DrawerNavigator />
-    </NavigationContainer>
-  );
+  return <DrawerNavigator />;
 };
 
 export default Navigation; 

@@ -13,24 +13,9 @@ import LoginScreen from './src/Bai4_Authentication/LoginScreen';
 import RegisterScreen from './src/Bai4_Authentication/RegisterScreen';
 import ForgotPasswordScreen from './src/Bai4_Authentication/ForgotPasswordScreen';
 import TodoList from './src/Bai5_TodoList/TodoList';
+import TodoForm from './src/Bai5_TodoList/TodoForm';
 
 const Stack = createStackNavigator();
-
-const AuthStack = () => {
-  return (
-    <Stack.Navigator 
-      screenOptions={{ 
-        headerShown: false,
-        cardStyle: { backgroundColor: '#f9f9f9' }
-      }}
-    >
-      <Stack.Screen name="Login" component={LoginScreen} />
-      <Stack.Screen name="Register" component={RegisterScreen} />
-      <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-      <Stack.Screen name="TodoList" component={TodoList} />
-    </Stack.Navigator>
-  );
-};
 
 const App = () => {
   const [selectedExercise, setSelectedExercise] = useState(null);
@@ -44,9 +29,30 @@ const App = () => {
       case 'contacts':
         return <ContactList />;
       case 'auth':
-        return <AuthStack />;
+        return (
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Register" component={RegisterScreen} />
+            <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
+          </Stack.Navigator>
+        );
       case 'todo':
-        return <TodoList />;
+        return (
+          <Stack.Navigator>
+            <Stack.Screen 
+              name="TodoList" 
+              component={TodoList}
+              options={{ title: 'Danh sách công việc' }}
+            />
+            <Stack.Screen 
+              name="TodoForm" 
+              component={TodoForm}
+              options={({ route }) => ({ 
+                title: route.params?.todo ? 'Sửa công việc' : 'Thêm công việc' 
+              })}
+            />
+          </Stack.Navigator>
+        );
       default:
         return (
           <ScrollView contentContainerStyle={styles.menuContainer}>

@@ -15,6 +15,12 @@ import { useNavigation } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { AuthContext } from '../context/AuthContext';
 import { addTodo, getTodoById, updateTodo } from './todoService';
+// Thêm import cho web
+let ReactDatePicker;
+if (Platform.OS === 'web') {
+  ReactDatePicker = require('react-datepicker').default;
+  require('react-datepicker/dist/react-datepicker.css');
+}
 
 const TodoForm = ({ route }) => {
   const navigation = useNavigation();
@@ -179,38 +185,42 @@ const TodoForm = ({ route }) => {
           
           <View style={styles.inputGroup}>
             <Text style={styles.label}>Ngày hết hạn</Text>
-            <View style={styles.dateContainer}>
-              <TouchableOpacity
-                style={styles.dateButton}
-                onPress={showDatepicker}
-              >
-                <Text style={styles.dateButtonText}>
-                  {dueDate 
-                    ? new Date(dueDate).toLocaleDateString('vi-VN') 
-                    : 'Chọn ngày'}
-                </Text>
-              </TouchableOpacity>
-              
-              {dueDate && (
+            {Platform.OS === 'web' ? (
+              <ReactDatePicker
+                selected={dueDate}
+                onChange={date => setDueDate(date)}
+                dateFormat="dd/MM/yyyy"
+                placeholderText="Chọn ngày"
+                customInput={<TextInput style={styles.dateButton} />}
+                isClearable
+              />
+            ) : (
+              <>
                 <TouchableOpacity
-                  style={styles.clearDateButton}
-                  onPress={clearDueDate}
+                  style={styles.dateButton}
+                  onPress={showDatepicker}
                 >
-                  <Text style={styles.clearDateText}>×</Text>
+                  <Text style={styles.dateButtonText}>
+                    {dueDate 
+                      ? new Date(dueDate).toLocaleDateString('vi-VN') 
+                      : 'Chọn ngày'}
+                  </Text>
                 </TouchableOpacity>
-              )}
-            </View>
+                {showDatePicker && (
+                  <DateTimePicker
+                    value={dueDate || new Date()}
+                    mode="date"
+                    display="default"
+                    onChange={(event, date) => {
+                      setShowDatePicker(false);
+                      if (date) setDueDate(date);
+                    }}
+                    minimumDate={new Date()}
+                  />
+                )}
+              </>
+            )}
           </View>
-          
-          {showDatePicker && (
-            <DateTimePicker
-              value={dueDate || new Date()}
-              mode="date"
-              display="default"
-              onChange={handleDateChange}
-              minimumDate={new Date()}
-            />
-          )}
           
           <View style={styles.buttonContainer}>
             <TouchableOpacity

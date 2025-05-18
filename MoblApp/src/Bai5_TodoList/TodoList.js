@@ -185,7 +185,7 @@ const TodoList = () => {
         </View>
         <TouchableOpacity 
           style={styles.addButton}
-          onPress={() => navigation.navigate('AddTodo')}
+          onPress={() => navigation.navigate('TodoForm')}
         >
           <Text style={styles.addButtonText}>+</Text>
         </TouchableOpacity>
